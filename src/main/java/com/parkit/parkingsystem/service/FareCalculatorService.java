@@ -24,6 +24,10 @@ public class FareCalculatorService {
         //conversion duration milliseconds to hour
         duration = duration/3600000;
 
+        if(ticket.getParkingSpot().isAvailable()){
+            duration = duration * 0.95; // 5% discount for regular customers
+        }
+
 
 
         switch (ticket.getParkingSpot().getParkingType()){
@@ -37,5 +41,7 @@ public class FareCalculatorService {
             }
             default: throw new IllegalArgumentException("Unkown Parking Type");
         }
+
+
     }
 }
